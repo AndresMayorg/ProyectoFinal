@@ -1,7 +1,6 @@
 
-class Incertidumbre
-{
-    public static void main (String args[]) {
+class Incertidumbre {
+    public static void main(String args[]) {
         System.out.println("Decisión bajo Incertidumbre");
 
         int operacion;
@@ -29,15 +28,15 @@ class Incertidumbre
      *         definirTabla           *
      *******************************/
 
-    private static void definirTabla()
-    {
+    private static void definirTabla() {
         System.out.println("DEFINICION DE LA TABLA DE DECISION:");
 
         int numAlter;
         int numEst;
-        int i,j;
+        int i, j;
         double valor;
         String cadena;
+        int random = (int) (Math.random() * 9 + 1);
 
         /*
          ** Obtener número de alternativas y estados
@@ -45,13 +44,13 @@ class Incertidumbre
 
         do {
             numAlter = Terminal.leeEntero("NUMERO DE ALTERNATIVAS? ");
-        } while (numAlter < 0) ;
+        } while (numAlter < 0);
 
         if (numAlter == 0) return;
 
         do {
             numEst = Terminal.leeEntero("NUMERO DE ESTADOS? ");
-        } while (numEst < 0) ;
+        } while (numEst < 0);
 
         if (numEst == 0) return;
 
@@ -66,41 +65,29 @@ class Incertidumbre
          ** Obtener descripción de alternativas
          */
 
-        System.out.println();
-        System.out.println("Introduzca la descripcion de las alternativas:");
-        System.out.println();
-
-
-        for (i=1;i<=numAlter;i++) {
-            cadena = Terminal.leeCadena("Alternativa "+i+": ");
-            TablaIncert.definirAlter(i,cadena);
+        for (i = 1; i <= numAlter; i++) {
+            cadena = String.valueOf(random);
+            TablaIncert.definirAlter(i, cadena);
         }
 
         /*
          ** Obtener descripción de estados
          */
 
-        System.out.println();
-        System.out.println("Introduzca la descripcion de los estados:");
-        System.out.println();
-
-        for (j=1;j<=numEst;j++) {
-            cadena = Terminal.leeCadena("Estado "+j+": ");
-            TablaIncert.definirEstado(j,cadena);
+        for (j = 1; j <= numEst; j++) {
+            cadena = String.valueOf(random);
+            TablaIncert.definirEstado(j, cadena);
         }
 
         /*
          ** Obtener Valoración de los resultados
          */
 
-        System.out.println();
-        System.out.println("Introduzca la valoracion de los resultados:");
-
-        for(i=1;i<=numAlter;i++) {
+        for (i = 1; i <= numAlter; i++) {
             System.out.println();
-            for (j=1;j<=numEst;j++) {
-                valor = Terminal.leeReal("Alternativa "+i+" , Estado "+j+":");
-                TablaIncert.definirResultado(i,j,valor);
+            for (j = 1; j <= numEst; j++) {
+                valor = (int) (Math.random() * 100);
+                TablaIncert.definirResultado(i, j, valor);
             }
         }
 

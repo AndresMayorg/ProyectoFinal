@@ -1,23 +1,22 @@
 
-public class TablaIncert
-{
-    private static int        Nalternativas=0;     // Número de alternativas
-    private static int        Nestados=0;       // Número de estados de la Naturaleza
-    private static String[]   Alter;        // Alternativas
-    private static String[]   Estado;       // Estados
+public class TablaIncert {
+    private static int Nalternativas = 0;     // Número de alternativas
+    private static int Nestados = 0;       // Número de estados de la Naturaleza
+    private static String[] Alter;        // Alternativas
+    private static String[] Estado;       // Estados
     private static double[][] Resultado;    // Resultados
 
     /*******************************
      *         Constructor         *
      *******************************/
 
-    public TablaIncert(int numAlter,int numEst) {
+    public TablaIncert(int numAlter, int numEst) {
 
         Nalternativas = numAlter;
-        Nestados   = numEst;
+        Nestados = numEst;
 
-        Alter     = new String[Nalternativas];
-        Estado    = new String[Nestados];
+        Alter = new String[Nalternativas];
+        Estado = new String[Nestados];
         Resultado = new double[Nalternativas][Nestados];
 
     }
@@ -28,12 +27,12 @@ public class TablaIncert
 
     public static void definirAlter(int numAlter, String DescAlter) {
 
-        if (numAlter<1 || numAlter>Nalternativas) {
+        if (numAlter < 1 || numAlter > Nalternativas) {
             System.out.println("Número de Alternativa incorrecto");
             return;
         }
 
-        Alter[numAlter-1] = DescAlter;
+        Alter[numAlter - 1] = DescAlter;
 
     }
 
@@ -43,12 +42,12 @@ public class TablaIncert
 
     public static void definirEstado(int numEst, String DescEstado) {
 
-        if (numEst<1 || numEst>Nestados) {
+        if (numEst < 1 || numEst > Nestados) {
             System.out.println("Número de Estado incorrecto");
             return;
         }
 
-        Estado[numEst-1] = DescEstado;
+        Estado[numEst - 1] = DescEstado;
 
     }
 
@@ -59,17 +58,17 @@ public class TablaIncert
     public static void definirResultado(int numAlter, int numEst,
                                         double ValResultado) {
 
-        if (numAlter<1 || numAlter>Nalternativas) {
+        if (numAlter < 1 || numAlter > Nalternativas) {
             System.out.println("Número de Alternativa incorrecto");
             return;
         }
 
-        if (numEst<1 || numEst>Nestados) {
+        if (numEst < 1 || numEst > Nestados) {
             System.out.println("Número de Estado incorrecto");
             return;
         }
 
-        Resultado[numAlter-1][numEst-1] = ValResultado;
+        Resultado[numAlter - 1][numEst - 1] = ValResultado;
 
     }
 
@@ -79,7 +78,7 @@ public class TablaIncert
 
     public static void verTabla() {
 
-        int i,j;
+        int i, j;
 
         if (Nalternativas == 0 || Nestados == 0) return;
 
@@ -92,22 +91,22 @@ public class TablaIncert
 
         String cadena = "    |";
 
-        for (j=0;j<Nestados;j++) {
-            cadena += "  "+relleno("e"+(j+1),4);
+        for (j = 0; j < Nestados; j++) {
+            cadena += "  " + relleno("e" + (j + 1), 4);
         }
 
         System.out.println(cadena);
-        for (j=0;j<cadena.length();j++) System.out.print("-");
+        for (j = 0; j < cadena.length(); j++) System.out.print("-");
         System.out.println();
 
         // Para cada alternativa
 
-        for (i=0;i<Nalternativas;i++) {
+        for (i = 0; i < Nalternativas; i++) {
 
-            System.out.print(relleno("a"+(i+1),4)+"| ");
+            System.out.print(relleno("a" + (i + 1), 4) + "| ");
             // Para cada estado
-            for (j=0;j<Nestados;j++)
-                System.out.print(" "+relleno(Double.toString(Resultado[i][j]),5));
+            for (j = 0; j < Nestados; j++)
+                System.out.print(" " + relleno(Double.toString(Resultado[i][j]), 5));
             System.out.println();
         }
         System.out.println();
@@ -119,14 +118,13 @@ public class TablaIncert
      *           relleno          *
      *******************************/
 
-    public static String relleno(String cadena,int longitud)
-    {
+    public static String relleno(String cadena, int longitud) {
         String blanco = new String(cadena);
         int dif = longitud - cadena.length();
 
         while (dif > 0) {
             blanco = new String(blanco + " ");
-            dif --;
+            dif--;
         }
 
         return blanco;
@@ -153,7 +151,7 @@ public class TablaIncert
             System.out.println("[0] Salir");
 
             do {
-                operacion = Terminal.leeEntero ("Indique una operacion: ");
+                operacion = Terminal.leeEntero("Indique una operacion: ");
             } while ((operacion < 0) || (operacion > 5));
 
             System.out.println();
@@ -174,15 +172,15 @@ public class TablaIncert
      *            Wald             *
      *******************************/
 
-    public static void Wald () {
+    public static void Wald() {
 
-        double Maximo =  Double.NEGATIVE_INFINITY;
-        int    AltMax = 1;
+        double Maximo = Double.NEGATIVE_INFINITY;
+        int AltMax = 1;
 
         double Minimo;
-        int    EstMin = 1;
+        int EstMin = 1;
 
-        int i,j;
+        int i, j;
 
         System.out.println("Criterio de Wald");
         System.out.println("----------------");
@@ -191,26 +189,26 @@ public class TablaIncert
         System.out.println("Valoracion de las alternativas");
         System.out.println();
 
-        for (i=0;i<Nalternativas;i++) {
+        for (i = 0; i < Nalternativas; i++) {
 
             Minimo = Double.POSITIVE_INFINITY;
-            for (j=0;j<Nestados;j++) {
-                if (Resultado[i][j]<Minimo) {
+            for (j = 0; j < Nestados; j++) {
+                if (Resultado[i][j] < Minimo) {
                     Minimo = Resultado[i][j];
-                    EstMin = j+1;
+                    EstMin = j + 1;
                 }
             }
 
-            System.out.println("Alt. "+(i+1)+": Valoracion="+Minimo+"  Estado="+EstMin);
+            System.out.println("Alt. " + (i + 1) + ": Valoracion=" + Minimo + "  Estado=" + EstMin);
 
             if (Minimo > Maximo) {
                 Maximo = Minimo;
-                AltMax = i+1;
+                AltMax = i + 1;
             }
         }
 
         System.out.println();
-        System.out.println("Alternativa óptima: "+AltMax+" "+Alter[AltMax-1]);
+        System.out.println("Alternativa óptima: " + AltMax + " " + Maximo);
         System.out.println();
         System.out.println();
 
@@ -220,15 +218,15 @@ public class TablaIncert
      *            Maximax          *
      *******************************/
 
-    public static void Maximax () {
+    public static void Maximax() {
 
-        double Maximo =  Double.NEGATIVE_INFINITY;
-        int    AltMax = 1;
+        double Maximo = Double.NEGATIVE_INFINITY;
+        int AltMax = 1;
 
         double MaximoAux;
-        int    EstMax = 1;
+        int EstMax = 1;
 
-        int i,j;
+        int i, j;
 
         System.out.println("Criterio Maximax");
         System.out.println("----------------");
@@ -237,26 +235,26 @@ public class TablaIncert
         System.out.println("Valoracion de las alternativas");
         System.out.println();
 
-        for (i=0;i<Nalternativas;i++) {
+        for (i = 0; i < Nalternativas; i++) {
 
             MaximoAux = Double.NEGATIVE_INFINITY;
-            for (j=0;j<Nestados;j++) {
-                if (Resultado[i][j]>MaximoAux) {
+            for (j = 0; j < Nestados; j++) {
+                if (Resultado[i][j] > MaximoAux) {
                     MaximoAux = Resultado[i][j];
-                    EstMax = j+1;
+                    EstMax = j + 1;
                 }
             }
 
-            System.out.println("Alt. "+(i+1)+": Valoracion="+MaximoAux+"  Estado="+EstMax);
+            System.out.println("Alt. " + (i + 1) + ": Valoracion=" + MaximoAux + "  Estado=" + EstMax);
 
             if (MaximoAux > Maximo) {
                 Maximo = MaximoAux;
-                AltMax = i+1;
+                AltMax = i + 1;
             }
         }
 
         System.out.println();
-        System.out.println("Alternativa óptima: "+AltMax+" "+Alter[AltMax-1]);
+        System.out.println("Alternativa óptima: " + AltMax + " " + Maximo);
         System.out.println();
         System.out.println();
 
@@ -268,15 +266,15 @@ public class TablaIncert
 
     public static void Hurwicz() {
 
-        double Maximo =  Double.NEGATIVE_INFINITY;
-        int    AltMax = 1;
+        double Maximo = Double.NEGATIVE_INFINITY;
+        int AltMax = 1;
 
         double MinimoAux;
-        int    EstMin = 1;
+        int EstMin = 1;
         double MaximoAux;
-        int    EstMax = 1;
+        int EstMax = 1;
 
-        int i,j;
+        int i, j;
         double Alfa;
         double valorAlt;
 
@@ -286,43 +284,42 @@ public class TablaIncert
 
         do {
             Alfa = Terminal.leeReal("Valor de Alfa: ");
-        } while (Alfa < 0 || Alfa>1) ;
+        } while (Alfa < 0 || Alfa > 1);
 
 
         System.out.println("Valoracion de las alternativas");
         System.out.println();
 
-        for (i=0;i<Nalternativas;i++) {
+        for (i = 0; i < Nalternativas; i++) {
 
             MinimoAux = Double.POSITIVE_INFINITY;
             MaximoAux = Double.NEGATIVE_INFINITY;
-            for (j=0;j<Nestados;j++) {
-                if (Resultado[i][j]<MinimoAux) {
+            for (j = 0; j < Nestados; j++) {
+                if (Resultado[i][j] < MinimoAux) {
                     MinimoAux = Resultado[i][j];
-                    EstMin = j+1;
+                    EstMin = j + 1;
                 }
-                if (Resultado[i][j]>MaximoAux) {
+                if (Resultado[i][j] > MaximoAux) {
                     MaximoAux = Resultado[i][j];
-                    EstMax = j+1;
+                    EstMax = j + 1;
                 }
             }
 
-            valorAlt = Alfa*MinimoAux + (1-Alfa)*MaximoAux;
-            System.out.println("Alt. "+(i+1)+": Valoracion="+valorAlt+"  Estado="+EstMin);
+            valorAlt = Alfa * MinimoAux + (1 - Alfa) * MaximoAux;
+            System.out.println("Alt. " + (i + 1) + ": Valoracion=" + valorAlt + "  Estado=" + EstMin);
 
             if (valorAlt > Maximo) {
                 Maximo = valorAlt;
-                AltMax = i+1;
+                AltMax = i + 1;
             }
         }
 
         System.out.println();
-        System.out.println("Alternativa óptima: "+AltMax+" "+Alter[AltMax-1]);
+        System.out.println("Alternativa óptima: " + AltMax + " " + Maximo);
         System.out.println();
         System.out.println();
 
     }
-
 
 
     /*******************************
@@ -332,12 +329,12 @@ public class TablaIncert
     public static void Savage() {
 
         double Maximo = Double.NEGATIVE_INFINITY;
-        int    EstMax = 1;
+        int EstMax = 1;
 
         double Minimo = Double.POSITIVE_INFINITY;
-        int    AltMin = 1;
+        int AltMin = 1;
 
-        int i,j;
+        int i, j;
 
         System.out.println("Criterio de Savage");
         System.out.println("------------------");
@@ -347,14 +344,14 @@ public class TablaIncert
         /* Construir matriz de pérdidas relativas
         */
 
-        double [][] PerdidaRel = new double[Nalternativas][Nestados];
+        double[][] PerdidaRel = new double[Nalternativas][Nestados];
 
-        for (j=0;j<Nestados;j++) {
+        for (j = 0; j < Nestados; j++) {
             Maximo = Double.NEGATIVE_INFINITY;
-            for (i=0;i<Nalternativas;i++)
-                if (Resultado[i][j]>Maximo) Maximo = Resultado[i][j];
+            for (i = 0; i < Nalternativas; i++)
+                if (Resultado[i][j] > Maximo) Maximo = Resultado[i][j];
 
-            for (i=0;i<Nalternativas;i++)
+            for (i = 0; i < Nalternativas; i++)
                 PerdidaRel[i][j] = Maximo - Resultado[i][j];
         }
 
@@ -366,26 +363,26 @@ public class TablaIncert
         System.out.println("Valoracion de las alternativas");
         System.out.println();
 
-        for (i=0;i<Nalternativas;i++) {
+        for (i = 0; i < Nalternativas; i++) {
 
             Maximo = Double.NEGATIVE_INFINITY;
-            for (j=0;j<Nestados;j++) {
-                if (PerdidaRel[i][j]>Maximo) {
+            for (j = 0; j < Nestados; j++) {
+                if (PerdidaRel[i][j] > Maximo) {
                     Maximo = PerdidaRel[i][j];
-                    EstMax = j+1;
+                    EstMax = j + 1;
                 }
             }
 
-            System.out.println("Alt. "+(i+1)+": Valoracion="+Maximo+"  Estado="+EstMax);
+            System.out.println("Alt. " + (i + 1) + ": Valoracion=" + Maximo + "  Estado=" + EstMax);
 
             if (Maximo < Minimo) {
                 Minimo = Maximo;
-                AltMin = i+1;
+                AltMin = i + 1;
             }
         }
 
         System.out.println();
-        System.out.println("Alternativa óptima: "+AltMin+" "+Alter[AltMin-1]);
+        System.out.println("Alternativa óptima: " + AltMin + " " + Minimo);
         System.out.println();
         System.out.println();
 
@@ -398,10 +395,10 @@ public class TablaIncert
 
     public static void Laplace() {
 
-        double Maximo =  Double.NEGATIVE_INFINITY;
-        int    AltMax = 1;
+        double Maximo = Double.NEGATIVE_INFINITY;
+        int AltMax = 1;
 
-        int i,j;
+        int i, j;
         double Suma;
         double valorAlt;
 
@@ -412,22 +409,22 @@ public class TablaIncert
         System.out.println("Valoracion de las alternativas");
         System.out.println();
 
-        for (i=0;i<Nalternativas;i++) {
+        for (i = 0; i < Nalternativas; i++) {
 
             Suma = 0;
-            for (j=0;j<Nestados;j++) Suma += Resultado[i][j];
-            valorAlt = Suma/Nestados;
+            for (j = 0; j < Nestados; j++) Suma += Resultado[i][j];
+            valorAlt = Suma / Nestados;
 
-            System.out.println("Alt. "+(i+1)+": Valoracion="+valorAlt);
+            System.out.println("Alt. " + (i + 1) + ": Valoracion=" + valorAlt);
 
             if (valorAlt > Maximo) {
                 Maximo = valorAlt;
-                AltMax = i+1;
+                AltMax = i + 1;
             }
         }
 
         System.out.println();
-        System.out.println("Alternativa óptima: "+AltMax+" "+Alter[AltMax-1]);
+        System.out.println("Alternativa óptima: " + AltMax + " " + Maximo);
         System.out.println();
         System.out.println();
 
