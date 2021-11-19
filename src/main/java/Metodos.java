@@ -1,5 +1,5 @@
 
-public class TablaIncert {
+public class Metodos {
     private static int Nalternativas = 0;     // Número de alternativas
     private static int Nestados = 0;       // Número de estados de la Naturaleza
     private static String[] Alter;        // Alternativas
@@ -10,7 +10,7 @@ public class TablaIncert {
      *         Constructor         *
      *******************************/
 
-    public TablaIncert(int numAlter, int numEst) {
+    public Metodos(int numAlter, int numEst) {
 
         Nalternativas = numAlter;
         Nestados = numEst;
@@ -143,22 +143,22 @@ public class TablaIncert {
             System.out.println("Criterios de Decision bajo incertidumbre");
             System.out.println();
 
-            System.out.println("[1] Criterio de Wald");
-            System.out.println("[2] Criterio Maximax");
-            System.out.println("[3] Criterio de Hurwicz");
-            System.out.println("[4] Criterio de Savage");
-            System.out.println("[5] Criterio de Laplace");
+            System.out.println("[1] Método Pesimista");
+            System.out.println("[2] Método Optimista ");
+            System.out.println("[3] Método de Hurwicz");
+            System.out.println("[4] Método de Savage");
+            System.out.println("[5] Método de Laplace");
             System.out.println("[0] Salir");
 
             do {
-                operacion = Terminal.leeEntero("Indique una operacion: ");
+                operacion = Control.leeEntero("Indique una operacion: ");
             } while ((operacion < 0) || (operacion > 5));
 
             System.out.println();
             if (operacion == 1)
-                Wald();
+                Pesimista();
             else if (operacion == 2)
-                Maximax();
+                Optimista();
             else if (operacion == 3)
                 Hurwicz();
             else if (operacion == 4)
@@ -169,10 +169,10 @@ public class TablaIncert {
     }
 
     /*******************************
-     *            Wald             *
+     *   Método pesimista            *
      *******************************/
 
-    public static void Wald() {
+    public static void Pesimista() {
 
         double Maximo = Double.NEGATIVE_INFINITY;
         int AltMax = 1;
@@ -182,7 +182,7 @@ public class TablaIncert {
 
         int i, j;
 
-        System.out.println("Criterio de Wald");
+        System.out.println("Método pesimista");
         System.out.println("----------------");
         System.out.println();
 
@@ -215,10 +215,10 @@ public class TablaIncert {
     }
 
     /*******************************
-     *            Maximax          *
+     *  Método Optimista          *
      *******************************/
 
-    public static void Maximax() {
+    public static void Optimista() {
 
         double Maximo = Double.NEGATIVE_INFINITY;
         int AltMax = 1;
@@ -228,7 +228,7 @@ public class TablaIncert {
 
         int i, j;
 
-        System.out.println("Criterio Maximax");
+        System.out.println("Método Optimista");
         System.out.println("----------------");
         System.out.println();
 
@@ -261,7 +261,7 @@ public class TablaIncert {
     }
 
     /*******************************
-     *            Hurwicz           *
+     * Método de Hurwicz
      *******************************/
 
     public static void Hurwicz() {
@@ -278,12 +278,12 @@ public class TablaIncert {
         double Alfa;
         double valorAlt;
 
-        System.out.println("Criterio de Hurwicz");
+        System.out.println("Método de Hurwicz");
         System.out.println("-------------------");
         System.out.println();
 
         do {
-            Alfa = Terminal.leeReal("Valor de Alfa: ");
+            Alfa = Control.leeReal("Valor de Alfa (coeficiente) entre 0 y 1 : ");
         } while (Alfa < 0 || Alfa > 1);
 
 
@@ -323,7 +323,7 @@ public class TablaIncert {
 
 
     /*******************************
-     *            Savage           *
+     *  Método de Savage  *
      *******************************/
 
     public static void Savage() {
@@ -336,7 +336,7 @@ public class TablaIncert {
 
         int i, j;
 
-        System.out.println("Criterio de Savage");
+        System.out.println("Método de Savage");
         System.out.println("------------------");
         System.out.println();
 
@@ -390,7 +390,7 @@ public class TablaIncert {
 
 
     /*******************************
-     *            Laplace           *
+     * Método de Laplace           *
      *******************************/
 
     public static void Laplace() {
@@ -402,7 +402,7 @@ public class TablaIncert {
         double Suma;
         double valorAlt;
 
-        System.out.println("Criterio de Laplace");
+        System.out.println("Método de Laplace ");
         System.out.println("-------------------");
         System.out.println();
 

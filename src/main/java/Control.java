@@ -1,6 +1,6 @@
 
 
-public class Terminal {
+public class Control {
     /**
      * Imprime un mensaje en el dispositivo
      * estandar de salida sin salto de linea
@@ -9,15 +9,6 @@ public class Terminal {
     public static void imprimeMensaje
     (String mensaje) {
         System.out.print(mensaje + " ");
-        System.out.flush();
-    }
-
-    /**
-     * Imprime un salto de linea en el dispositivo
-     * estandar de salida
-     */
-    public static void imprimeMensaje() {
-        System.out.println();
         System.out.flush();
     }
 
@@ -50,19 +41,6 @@ public class Terminal {
     }
 
     /**
-     * Lee una cadena desde el terminal, pero en
-     * primer lugar escribe un mensaje.
-     * @param  mensaje mensaje que se escribe
-     * @return la cadena leida
-     */
-
-    public static String leeCadena
-    (String mensaje) {
-        imprimeMensaje(mensaje);
-        return leeCadena();
-    }
-
-    /**
      * Lee un número entero (int) desde el terminal
      * (dispositivo estandar de entrada). El número
      * debe finalizar con un salto de línea.
@@ -72,52 +50,19 @@ public class Terminal {
      * introduce un valor incorrecto
      */
 
-    public static int leeEntero(String mensaje) {
+    static int leeEntero(String mensaje) {
         while(true) {
             imprimeMensaje(mensaje);
             try {
-                return Integer.valueOf(
-                        leeCadena().trim()).intValue();
+                return Integer.parseInt(
+                        leeCadena().trim());
             } catch(NumberFormatException e) {
                 System.out.println
-                        ("ERROR: Vuelve a intentarlo.");
+                        ("");
             }
         }
     }
 
-    /**
-     * Lee un entero superior o igual a un valor mínimo
-     */
-    public static int leeEntero(String mensaje,int minimo) {
-        int entero;
-        do {
-            entero = leeEntero(mensaje);
-            if (entero < minimo)
-                System.out.println(
-                        "#>> ERROR: Valor mínimo = " + minimo);
-        } while (entero < minimo);
-
-        return entero;
-    }
-
-    /**
-     * Lee un entero en el intervalo definido por los
-     * valores mínimo y máximo
-     */
-    public static int leeEntero(String mensaje,int minimo, int maximo) {
-        int entero;
-        do {
-            entero = leeEntero(mensaje);
-            if (entero < minimo)
-                System.out.println(
-                        "#>> ERROR: Valor mínimo = " + minimo);
-            else if (entero > maximo)
-                System.out.println(
-                        "#>> ERROR: Valor maximo = " + maximo);
-        } while (entero < minimo || entero > maximo);
-
-        return entero;
-    }
 
     /**
      * Lee un número real (double) desde el terminal
@@ -129,20 +74,18 @@ public class Terminal {
      * introduce un valor incorrecto
      */
 
-    public static double leeReal(String mensaje) {
+    static double leeReal(String mensaje) {
         while(true) {
             imprimeMensaje(mensaje);
             try {
-                return Double.valueOf(
-                        leeCadena().trim()).doubleValue();
+                return Double.parseDouble(
+                        leeCadena().trim());
             } catch(NumberFormatException e) {
                 System.out.println
-                        ("ERROR: Vuelve a intentarlo.");
+                        ("");
             }
         }
     }
 
 }
 
-
-/******** Fin de Terminal.java ***************/
